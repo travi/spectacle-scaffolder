@@ -1,4 +1,8 @@
-export function scaffold() {
+import mkdir from '../third-party-wrappers/make-dir';
+
+export async function scaffold({projectRoot}) {
+  await mkdir(`${projectRoot}/src`);
+
   return {
     dependencies: ['spectacle', 'react', 'react-dom', 'prop-types', 'normalize.css'],
     devDependencies: [

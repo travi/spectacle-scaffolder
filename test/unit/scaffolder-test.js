@@ -1,10 +1,28 @@
 import {assert} from 'chai';
+import sinon from 'sinon';
+import any from '@travi/any';
+import * as mkdir from '../../third-party-wrappers/make-dir';
 import {scaffold} from '../../src/scaffolder';
 
 suite('scaffolder', () => {
+  let sandbox;
+
+  setup(() => {
+    sandbox = sinon.createSandbox();
+
+    sandbox.stub(mkdir, 'default');
+  });
+
+  teardown(() => sandbox.restore());
+
   test('that spectacle dependencies are defined', async () => {
+    const projectRoot = any.string();
+    // const pathToCreatedDirectory = any.string();
+    // mkdir.default.withArgs(`${projectRoot}/src`).resolves(pathToCreatedDirectory);
+    mkdir.default.resolves();
+
     assert.deepEqual(
-      await scaffold(),
+      await scaffold({projectRoot}),
       {
         dependencies: ['spectacle', 'react', 'react-dom', 'prop-types', 'normalize.css'],
         devDependencies: [
@@ -28,5 +46,6 @@ suite('scaffolder', () => {
         vcsIgnore: {files: [], directories: []}
       }
     );
+    assert.calledWith(mkdir.default, `${projectRoot}/src`);
   });
 });
