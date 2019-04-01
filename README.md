@@ -1,5 +1,7 @@
 # spectacle-scaffolder
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/travi/spectacle-scaffolder.svg)](https://greenkeeper.io/)
+
 scaffolder for presentations using [Spectacle](https://github.com/FormidableLabs/spectacle)
 
 <!-- status badges -->
