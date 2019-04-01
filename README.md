@@ -1,7 +1,5 @@
 # spectacle-scaffolder
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/travi/spectacle-scaffolder.svg)](https://greenkeeper.io/)
-
 scaffolder for presentations using [Spectacle](https://github.com/FormidableLabs/spectacle)
 
 <!-- status badges -->
@@ -27,6 +25,7 @@ $ npm install @travi/spectacle-scaffolder --prod
 [![Commitizen friendly][commitizen-badge]][commitizen-link]
 [![semantic-release][semantic-release-badge]][semantic-release-link]
 [![PRs Welcome][PRs-badge]][PRs-link]
+[![Greenkeeper badge](https://badges.greenkeeper.io/travi/spectacle-scaffolder.svg)](https://greenkeeper.io/)
 
 ### Dependencies
 
