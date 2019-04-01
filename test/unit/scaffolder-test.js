@@ -24,14 +24,20 @@ suite('scaffolder', () => {
     assert.deepEqual(
       await scaffold({projectRoot}),
       {
-        dependencies: ['spectacle', 'react', 'react-dom', 'prop-types', 'normalize.css'],
+        dependencies: [
+          'spectacle',
+          'react',
+          'react-dom',
+          'prop-types',
+          'normalize.css',
+          'redbox-react',
+          'react-hot-loader'
+        ],
         devDependencies: [
           'webpack',
           'webpack-cli',
           'webpack-config-utils',
           'webpack-dev-server',
-          'react-hot-loader',
-          'redbox-react',
           'html-webpack-plugin',
           'babel-loader',
           'mustache-loader',
