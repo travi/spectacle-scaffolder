@@ -2,6 +2,7 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
 import * as mkdir from '../../third-party-wrappers/make-dir';
+import * as lintScaffolder from '../../src/lint';
 import {scaffold} from '../../src/scaffolder';
 
 suite('scaffolder', () => {
@@ -11,18 +12,19 @@ suite('scaffolder', () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(mkdir, 'default');
+    sandbox.stub(lintScaffolder, 'default');
   });
 
   teardown(() => sandbox.restore());
 
   test('that spectacle dependencies are defined', async () => {
     const projectRoot = any.string();
-    // const pathToCreatedDirectory = any.string();
-    // mkdir.default.withArgs(`${projectRoot}/src`).resolves(pathToCreatedDirectory);
-    mkdir.default.resolves();
+    const pathToCreatedDirectory = any.string();
+    const configs = any.simpleObject();
+    mkdir.default.withArgs(`${projectRoot}/src`).resolves(pathToCreatedDirectory);
 
     assert.deepEqual(
-      await scaffold({projectRoot}),
+      await scaffold({projectRoot, configs}),
       {
         dependencies: [
           'spectacle',
@@ -52,6 +54,6 @@ suite('scaffolder', () => {
         vcsIgnore: {files: [], directories: []}
       }
     );
-    assert.calledWith(mkdir.default, `${projectRoot}/src`);
+    assert.calledWith(lintScaffolder.default, {srcDirectory: pathToCreatedDirectory, configs});
   });
 });
