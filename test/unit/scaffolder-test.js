@@ -2,7 +2,6 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
 import * as mkdir from '../../third-party-wrappers/make-dir';
-import * as lintScaffolder from '../../src/lint';
 import {scaffold} from '../../src/scaffolder';
 
 suite('scaffolder', () => {
@@ -12,7 +11,6 @@ suite('scaffolder', () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(mkdir, 'default');
-    sandbox.stub(lintScaffolder, 'default');
   });
 
   teardown(() => sandbox.restore());
@@ -51,9 +49,9 @@ suite('scaffolder', () => {
           'build:dev': 'webpack --env development',
           start: 'webpack-dev-server'
         },
-        vcsIgnore: {files: [], directories: []}
+        vcsIgnore: {files: [], directories: []},
+        eslintConfigs: ['react']
       }
     );
-    assert.calledWith(lintScaffolder.default, {srcDirectory: pathToCreatedDirectory, configs});
   });
 });

@@ -1,10 +1,4 @@
-import mkdir from '../third-party-wrappers/make-dir';
-import scaffoldLint from './lint';
-
-export async function scaffold({projectRoot, configs}) {
-  const srcDirectory = await mkdir(`${projectRoot}/src`);
-  await scaffoldLint({srcDirectory, configs});
-
+export async function scaffold() {
   return {
     dependencies: [
       'spectacle',
@@ -31,6 +25,7 @@ export async function scaffold({projectRoot, configs}) {
       'build:dev': 'webpack --env development',
       start: 'webpack-dev-server'
     },
-    vcsIgnore: {files: [], directories: []}
+    vcsIgnore: {files: [], directories: []},
+    eslintConfigs: ['react']
   };
 }
