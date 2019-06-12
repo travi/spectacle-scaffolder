@@ -1,3 +1,5 @@
+import {promises} from 'fs';
+import {resolve} from 'path';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
@@ -11,6 +13,7 @@ suite('scaffolder', () => {
     sandbox = sinon.createSandbox();
 
     sandbox.stub(mkdir, 'default');
+    sandbox.stub(promises, 'copyFile');
   });
 
   teardown(() => sandbox.restore());
@@ -52,6 +55,10 @@ suite('scaffolder', () => {
         vcsIgnore: {files: [], directories: []},
         eslintConfigs: ['react']
       }
+    );
+    assert.calledWith(
+      promises.copyFile, resolve(__dirname, '..', '..', 'templates', 'index.txt'),
+      `${pathToCreatedDirectory}/index.js`
     );
   });
 });

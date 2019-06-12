@@ -1,4 +1,12 @@
-export async function scaffold() {
+import {promises} from 'fs';
+import {resolve} from 'path';
+import mkdir from '../third-party-wrappers/make-dir';
+
+export async function scaffold({projectRoot}) {
+  const srcDirectory = await mkdir(`${projectRoot}/src`);
+
+  await promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`);
+
   return {
     dependencies: [
       'spectacle',

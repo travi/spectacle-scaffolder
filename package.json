@@ -28,8 +28,12 @@
     "access": "public"
   },
   "files": [
-    "lib/"
+    "lib/",
+    "templates/"
   ],
+  "engines": {
+    "node": ">=10"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
