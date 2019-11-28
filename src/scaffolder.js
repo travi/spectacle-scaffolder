@@ -18,6 +18,7 @@ export async function scaffold({projectRoot}) {
       'react-hot-loader'
     ],
     devDependencies: [
+      'serve',
       'webpack',
       'webpack-cli',
       'webpack-config-utils',
@@ -31,7 +32,8 @@ export async function scaffold({projectRoot}) {
     scripts: {
       build: 'webpack --env production',
       'build:dev': 'webpack --env development',
-      start: 'webpack-dev-server'
+      start: 'serve lib/',
+      dev: 'webpack-dev-server'
     },
     vcsIgnore: {files: [], directories: []},
     eslintConfigs: ['react']

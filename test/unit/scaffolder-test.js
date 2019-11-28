@@ -37,6 +37,7 @@ suite('scaffolder', () => {
           'react-hot-loader'
         ],
         devDependencies: [
+          'serve',
           'webpack',
           'webpack-cli',
           'webpack-config-utils',
@@ -50,7 +51,8 @@ suite('scaffolder', () => {
         scripts: {
           build: 'webpack --env production',
           'build:dev': 'webpack --env development',
-          start: 'webpack-dev-server'
+          start: 'serve lib/',
+          dev: 'webpack-dev-server'
         },
         vcsIgnore: {files: [], directories: []},
         eslintConfigs: ['react']
