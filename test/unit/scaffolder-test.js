@@ -46,16 +46,21 @@ suite('scaffolder', () => {
           'babel-loader',
           'mustache-loader',
           'raw-loader',
-          'style-loader'
+          'style-loader',
+          'cypress',
+          'start-server-and-test'
         ],
         scripts: {
           build: 'webpack --env production',
           'build:dev': 'webpack --env development',
           start: 'serve lib/',
-          dev: 'webpack-dev-server'
+          dev: 'webpack-dev-server',
+          'test:smoke': "start-server-and-test 'npm start' http://localhost:5000 cypress:run",
+          'cypress:run': 'cypress run',
+          'cypress:open': 'cypress open'
         },
-        vcsIgnore: {files: [], directories: []},
-        eslintConfigs: ['react']
+        vcsIgnore: {files: [], directories: ['/cypress/fixtures/', '/cypress/videos/', '/cypress/screenshots']},
+        eslintConfigs: ['react', 'cypress']
       }
     );
     assert.calledWith(
