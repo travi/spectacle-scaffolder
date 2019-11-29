@@ -1,5 +1,6 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
+import * as cypressScaffolder from '@form8ion/cypress-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
@@ -14,6 +15,7 @@ suite('scaffolder', () => {
 
     sandbox.stub(mkdir, 'default');
     sandbox.stub(promises, 'copyFile');
+    sandbox.stub(cypressScaffolder, 'scaffold');
   });
 
   teardown(() => sandbox.restore());
@@ -22,7 +24,20 @@ suite('scaffolder', () => {
     const projectRoot = any.string();
     const pathToCreatedDirectory = any.string();
     const configs = any.simpleObject();
+    const cypressDevDependencies = any.listOf(any.string);
+    const cypressDependencies = any.listOf(any.string);
+    const cypressFilesToIgnore = any.listOf(any.string);
+    const cypressDirectoriesToIgnore = any.listOf(any.string);
+    const cypressEslintConfigs = any.listOf(any.string);
+    const cypressScripts = any.simpleObject();
     mkdir.default.withArgs(`${projectRoot}/src`).resolves(pathToCreatedDirectory);
+    cypressScaffolder.scaffold.resolves({
+      dependencies: cypressDependencies,
+      devDependencies: cypressDevDependencies,
+      vcsIgnore: {directories: cypressDirectoriesToIgnore, files: cypressFilesToIgnore},
+      eslintConfigs: cypressEslintConfigs,
+      scripts: cypressScripts
+    });
 
     assert.deepEqual(
       await scaffold({projectRoot, configs}),
@@ -34,7 +49,8 @@ suite('scaffolder', () => {
           'prop-types',
           'normalize.css',
           'redbox-react',
-          'react-hot-loader'
+          'react-hot-loader',
+          ...cypressDependencies
         ],
         devDependencies: [
           'serve',
@@ -47,8 +63,8 @@ suite('scaffolder', () => {
           'mustache-loader',
           'raw-loader',
           'style-loader',
-          'cypress',
-          'start-server-and-test'
+          'start-server-and-test',
+          ...cypressDevDependencies
         ],
         scripts: {
           build: 'webpack --env production',
@@ -56,11 +72,10 @@ suite('scaffolder', () => {
           start: 'serve lib/',
           dev: 'webpack-dev-server',
           'test:smoke': "start-server-and-test 'npm start' http://localhost:5000 cypress:run",
-          'cypress:run': 'cypress run',
-          'cypress:open': 'cypress open'
+          ...cypressScripts
         },
-        vcsIgnore: {files: [], directories: ['/cypress/fixtures/', '/cypress/videos/', '/cypress/screenshots']},
-        eslintConfigs: ['react', 'cypress']
+        vcsIgnore: {files: cypressFilesToIgnore, directories: cypressDirectoriesToIgnore},
+        eslintConfigs: ['react', ...cypressEslintConfigs]
       }
     );
     assert.calledWith(

@@ -1,11 +1,15 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
+import {scaffold as scaffoldCypress} from '@form8ion/cypress-scaffolder';
 import mkdir from '../third-party-wrappers/make-dir';
 
 export async function scaffold({projectRoot}) {
   const srcDirectory = await mkdir(`${projectRoot}/src`);
 
-  await promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`);
+  const [cypressResults] = await Promise.all([
+    scaffoldCypress(),
+    promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`)
+  ]);
 
   return {
     dependencies: [
@@ -15,7 +19,8 @@ export async function scaffold({projectRoot}) {
       'prop-types',
       'normalize.css',
       'redbox-react',
-      'react-hot-loader'
+      'react-hot-loader',
+      ...cypressResults.dependencies
     ],
     devDependencies: [
       'serve',
@@ -28,8 +33,8 @@ export async function scaffold({projectRoot}) {
       'mustache-loader',
       'raw-loader',
       'style-loader',
-      'cypress',
-      'start-server-and-test'
+      'start-server-and-test',
+      ...cypressResults.devDependencies
     ],
     scripts: {
       build: 'webpack --env production',
@@ -37,10 +42,9 @@ export async function scaffold({projectRoot}) {
       start: 'serve lib/',
       dev: 'webpack-dev-server',
       'test:smoke': "start-server-and-test 'npm start' http://localhost:5000 cypress:run",
-      'cypress:run': 'cypress run',
-      'cypress:open': 'cypress open'
+      ...cypressResults.scripts
     },
-    vcsIgnore: {files: [], directories: ['/cypress/fixtures/', '/cypress/videos/', '/cypress/screenshots']},
-    eslintConfigs: ['react', 'cypress']
+    vcsIgnore: {files: cypressResults.vcsIgnore.files, directories: cypressResults.vcsIgnore.directories},
+    eslintConfigs: ['react', ...cypressResults.eslintConfigs]
   };
 }
