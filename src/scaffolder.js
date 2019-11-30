@@ -5,9 +5,10 @@ import mkdir from '../third-party-wrappers/make-dir';
 
 export async function scaffold({projectRoot}) {
   const srcDirectory = await mkdir(`${projectRoot}/src`);
+  const smokeTestBaseUrl = 'http://localhost:5000';
 
   const [cypressResults] = await Promise.all([
-    scaffoldCypress(),
+    scaffoldCypress({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl}),
     promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`)
   ]);
 
@@ -41,7 +42,7 @@ export async function scaffold({projectRoot}) {
       'build:dev': 'webpack --env development',
       start: 'serve lib/',
       dev: 'webpack-dev-server',
-      'test:smoke': "start-server-and-test 'npm start' http://localhost:5000 cypress:run",
+      'test:smoke': `start-server-and-test 'npm start' ${smokeTestBaseUrl} cypress:run`,
       ...cypressResults.scripts
     },
     vcsIgnore: {files: cypressResults.vcsIgnore.files, directories: cypressResults.vcsIgnore.directories},

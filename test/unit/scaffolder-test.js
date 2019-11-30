@@ -30,17 +30,28 @@ suite('scaffolder', () => {
     const cypressDirectoriesToIgnore = any.listOf(any.string);
     const cypressEslintConfigs = any.listOf(any.string);
     const cypressScripts = any.simpleObject();
-    mkdir.default.withArgs(`${projectRoot}/src`).resolves(pathToCreatedDirectory);
-    cypressScaffolder.scaffold.resolves({
-      dependencies: cypressDependencies,
-      devDependencies: cypressDevDependencies,
-      vcsIgnore: {directories: cypressDirectoriesToIgnore, files: cypressFilesToIgnore},
-      eslintConfigs: cypressEslintConfigs,
-      scripts: cypressScripts
-    });
+    const smokeTestBaseUrl = 'http://localhost:5000';
+    mkdir.default
+      .withArgs(`${projectRoot}/src`)
+      .resolves(pathToCreatedDirectory);
+    cypressScaffolder.scaffold
+      .withArgs({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl})
+      .resolves({
+        dependencies: cypressDependencies,
+        devDependencies: cypressDevDependencies,
+        vcsIgnore: {
+          directories: cypressDirectoriesToIgnore,
+          files: cypressFilesToIgnore
+        },
+        eslintConfigs: cypressEslintConfigs,
+        scripts: cypressScripts
+      });
 
     assert.deepEqual(
-      await scaffold({projectRoot, configs}),
+      await scaffold({
+        projectRoot,
+        configs
+      }),
       {
         dependencies: [
           'spectacle',
@@ -71,10 +82,13 @@ suite('scaffolder', () => {
           'build:dev': 'webpack --env development',
           start: 'serve lib/',
           dev: 'webpack-dev-server',
-          'test:smoke': "start-server-and-test 'npm start' http://localhost:5000 cypress:run",
+          'test:smoke': `start-server-and-test 'npm start' ${smokeTestBaseUrl} cypress:run`,
           ...cypressScripts
         },
-        vcsIgnore: {files: cypressFilesToIgnore, directories: cypressDirectoriesToIgnore},
+        vcsIgnore: {
+          files: cypressFilesToIgnore,
+          directories: cypressDirectoriesToIgnore
+        },
         eslintConfigs: ['react', ...cypressEslintConfigs]
       }
     );
