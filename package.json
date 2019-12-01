@@ -63,7 +63,7 @@
     "travis-lint": "^1.0.0"
   },
   "dependencies": {
-    "@form8ion/cypress-scaffolder": "2.0.0-beta.1",
+    "@form8ion/cypress-scaffolder": "2.0.0",
     "make-dir": "^3.0.0",
     "mz": "^2.7.0"
   },
