@@ -15,8 +15,13 @@ scaffolder for presentations using [Spectacle](https://github.com/FormidableLabs
 ### Installation
 
 ```sh
-$ npm install @travi/spectacle-scaffolder --prod
+$ npm install @travi/spectacle-scaffolder --save-prod
 ```
+
+### Configuration
+
+This scaffolder is intended for use as an [application plugin](https://github.com/travi/javascript-scaffolder#applicationtypes-object-optional)
+for the [javascript-scaffolder](https://github.com/travi/javascript-scaffolder).
 
 ## Contributing
 
