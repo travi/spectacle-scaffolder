@@ -4,8 +4,8 @@ import * as cypressScaffolder from '@form8ion/cypress-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import * as mkdir from '../../third-party-wrappers/make-dir';
-import {scaffold} from '../../src/scaffolder';
+import * as mkdir from '../third-party-wrappers/make-dir';
+import {scaffold} from './scaffolder';
 
 suite('scaffolder', () => {
   let sandbox;
@@ -93,7 +93,7 @@ suite('scaffolder', () => {
       }
     );
     assert.calledWith(
-      promises.copyFile, resolve(__dirname, '..', '..', 'templates', 'index.txt'),
+      promises.copyFile, resolve(__dirname, '..', 'templates', 'index.txt'),
       `${pathToCreatedDirectory}/index.js`
     );
   });
