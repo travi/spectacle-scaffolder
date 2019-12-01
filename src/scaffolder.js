@@ -2,25 +2,21 @@ import {promises} from 'fs';
 import {resolve} from 'path';
 import {scaffold as scaffoldCypress} from '@form8ion/cypress-scaffolder';
 import mkdir from '../third-party-wrappers/make-dir';
+import scaffoldPresentation from './presentation';
 
 export async function scaffold({projectRoot}) {
   const srcDirectory = await mkdir(`${projectRoot}/src`);
   const smokeTestBaseUrl = 'http://localhost:5000';
 
-  const [cypressResults] = await Promise.all([
+  const [presentationResults, cypressResults] = await Promise.all([
+    scaffoldPresentation(),
     scaffoldCypress({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl}),
     promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`)
   ]);
 
   return {
     dependencies: [
-      'spectacle',
-      'react',
-      'react-dom',
-      'prop-types',
-      'normalize.css',
-      'redbox-react',
-      'react-hot-loader',
+      ...presentationResults.dependencies,
       ...cypressResults.dependencies
     ],
     devDependencies: [
@@ -35,6 +31,7 @@ export async function scaffold({projectRoot}) {
       'raw-loader',
       'style-loader',
       'start-server-and-test',
+      ...presentationResults.devDependencies,
       ...cypressResults.devDependencies
     ],
     scripts: {
@@ -43,9 +40,13 @@ export async function scaffold({projectRoot}) {
       start: 'serve lib/',
       dev: 'webpack-dev-server',
       'test:smoke': `start-server-and-test 'npm start' ${smokeTestBaseUrl} cypress:run`,
+      ...presentationResults.scripts,
       ...cypressResults.scripts
     },
-    vcsIgnore: {files: cypressResults.vcsIgnore.files, directories: cypressResults.vcsIgnore.directories},
-    eslintConfigs: ['react', ...cypressResults.eslintConfigs]
+    vcsIgnore: {
+      files: [...presentationResults.vcsIgnore.files, ...cypressResults.vcsIgnore.files],
+      directories: [...presentationResults.vcsIgnore.directories, ...cypressResults.vcsIgnore.directories]
+    },
+    eslintConfigs: [...presentationResults.eslintConfigs, ...cypressResults.eslintConfigs]
   };
 }

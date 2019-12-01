@@ -5,6 +5,7 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
 import * as mkdir from '../third-party-wrappers/make-dir';
+import * as presentationScaffolder from './presentation/scaffolder';
 import {scaffold} from './scaffolder';
 
 suite('scaffolder', () => {
@@ -16,6 +17,7 @@ suite('scaffolder', () => {
     sandbox.stub(mkdir, 'default');
     sandbox.stub(promises, 'copyFile');
     sandbox.stub(cypressScaffolder, 'scaffold');
+    sandbox.stub(presentationScaffolder, 'default');
   });
 
   teardown(() => sandbox.restore());
@@ -30,10 +32,26 @@ suite('scaffolder', () => {
     const cypressDirectoriesToIgnore = any.listOf(any.string);
     const cypressEslintConfigs = any.listOf(any.string);
     const cypressScripts = any.simpleObject();
+    const presentationDevDependencies = any.listOf(any.string);
+    const presentationDependencies = any.listOf(any.string);
+    const presentationFilesToIgnore = any.listOf(any.string);
+    const presentationDirectoriesToIgnore = any.listOf(any.string);
+    const presentationEslintConfigs = any.listOf(any.string);
+    const presentationScripts = any.simpleObject();
     const smokeTestBaseUrl = 'http://localhost:5000';
     mkdir.default
       .withArgs(`${projectRoot}/src`)
       .resolves(pathToCreatedDirectory);
+    presentationScaffolder.default.resolves({
+      dependencies: presentationDependencies,
+      devDependencies: presentationDevDependencies,
+      vcsIgnore: {
+        directories: presentationDirectoriesToIgnore,
+        files: presentationFilesToIgnore
+      },
+      eslintConfigs: presentationEslintConfigs,
+      scripts: presentationScripts
+    });
     cypressScaffolder.scaffold
       .withArgs({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl})
       .resolves({
@@ -54,13 +72,7 @@ suite('scaffolder', () => {
       }),
       {
         dependencies: [
-          'spectacle',
-          'react',
-          'react-dom',
-          'prop-types',
-          'normalize.css',
-          'redbox-react',
-          'react-hot-loader',
+          ...presentationDependencies,
           ...cypressDependencies
         ],
         devDependencies: [
@@ -75,6 +87,7 @@ suite('scaffolder', () => {
           'raw-loader',
           'style-loader',
           'start-server-and-test',
+          ...presentationDevDependencies,
           ...cypressDevDependencies
         ],
         scripts: {
@@ -83,13 +96,14 @@ suite('scaffolder', () => {
           start: 'serve lib/',
           dev: 'webpack-dev-server',
           'test:smoke': `start-server-and-test 'npm start' ${smokeTestBaseUrl} cypress:run`,
+          ...presentationScripts,
           ...cypressScripts
         },
         vcsIgnore: {
-          files: cypressFilesToIgnore,
-          directories: cypressDirectoriesToIgnore
+          files: [...presentationFilesToIgnore, ...cypressFilesToIgnore],
+          directories: [...presentationDirectoriesToIgnore, ...cypressDirectoriesToIgnore]
         },
-        eslintConfigs: ['react', ...cypressEslintConfigs]
+        eslintConfigs: [...presentationEslintConfigs, ...cypressEslintConfigs]
       }
     );
     assert.calledWith(
