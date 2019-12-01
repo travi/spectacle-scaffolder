@@ -1,4 +1,12 @@
-export default function () {
+import {promises} from 'fs';
+import {resolve} from 'path';
+import mkdir from '../../third-party-wrappers/make-dir';
+
+export default async function ({projectRoot}) {
+  const srcDirectory = await mkdir(`${projectRoot}/src`);
+
+  await promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`);
+
   return {
     dependencies: [
       'spectacle',
@@ -11,7 +19,10 @@ export default function () {
     ],
     devDependencies: [],
     scripts: {},
-    vcsIgnore: {files: [], directories: []},
+    vcsIgnore: {
+      files: [],
+      directories: []
+    },
     eslintConfigs: ['react']
   };
 }

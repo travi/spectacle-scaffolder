@@ -1,17 +1,12 @@
-import {promises} from 'fs';
-import {resolve} from 'path';
 import {scaffold as scaffoldCypress} from '@form8ion/cypress-scaffolder';
-import mkdir from '../third-party-wrappers/make-dir';
 import scaffoldPresentation from './presentation';
 
 export async function scaffold({projectRoot}) {
-  const srcDirectory = await mkdir(`${projectRoot}/src`);
   const smokeTestBaseUrl = 'http://localhost:5000';
 
   const [presentationResults, cypressResults] = await Promise.all([
-    scaffoldPresentation(),
-    scaffoldCypress({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl}),
-    promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`)
+    scaffoldPresentation({projectRoot}),
+    scaffoldCypress({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl})
   ]);
 
   return {

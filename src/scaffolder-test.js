@@ -1,10 +1,7 @@
-import {promises} from 'fs';
-import {resolve} from 'path';
 import * as cypressScaffolder from '@form8ion/cypress-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import * as mkdir from '../third-party-wrappers/make-dir';
 import * as presentationScaffolder from './presentation/scaffolder';
 import {scaffold} from './scaffolder';
 
@@ -14,8 +11,6 @@ suite('scaffolder', () => {
   setup(() => {
     sandbox = sinon.createSandbox();
 
-    sandbox.stub(mkdir, 'default');
-    sandbox.stub(promises, 'copyFile');
     sandbox.stub(cypressScaffolder, 'scaffold');
     sandbox.stub(presentationScaffolder, 'default');
   });
@@ -24,7 +19,6 @@ suite('scaffolder', () => {
 
   test('that spectacle dependencies are defined', async () => {
     const projectRoot = any.string();
-    const pathToCreatedDirectory = any.string();
     const configs = any.simpleObject();
     const cypressDevDependencies = any.listOf(any.string);
     const cypressDependencies = any.listOf(any.string);
@@ -39,21 +33,24 @@ suite('scaffolder', () => {
     const presentationEslintConfigs = any.listOf(any.string);
     const presentationScripts = any.simpleObject();
     const smokeTestBaseUrl = 'http://localhost:5000';
-    mkdir.default
-      .withArgs(`${projectRoot}/src`)
-      .resolves(pathToCreatedDirectory);
-    presentationScaffolder.default.resolves({
-      dependencies: presentationDependencies,
-      devDependencies: presentationDevDependencies,
-      vcsIgnore: {
-        directories: presentationDirectoriesToIgnore,
-        files: presentationFilesToIgnore
-      },
-      eslintConfigs: presentationEslintConfigs,
-      scripts: presentationScripts
-    });
+    presentationScaffolder.default
+      .withArgs({projectRoot})
+      .resolves({
+        dependencies: presentationDependencies,
+        devDependencies: presentationDevDependencies,
+        vcsIgnore: {
+          directories: presentationDirectoriesToIgnore,
+          files: presentationFilesToIgnore
+        },
+        eslintConfigs: presentationEslintConfigs,
+        scripts: presentationScripts
+      });
     cypressScaffolder.scaffold
-      .withArgs({projectRoot, testDirectory: 'test/smoke/', testBaseUrl: smokeTestBaseUrl})
+      .withArgs({
+        projectRoot,
+        testDirectory: 'test/smoke/',
+        testBaseUrl: smokeTestBaseUrl
+      })
       .resolves({
         dependencies: cypressDependencies,
         devDependencies: cypressDevDependencies,
@@ -105,10 +102,6 @@ suite('scaffolder', () => {
         },
         eslintConfigs: [...presentationEslintConfigs, ...cypressEslintConfigs]
       }
-    );
-    assert.calledWith(
-      promises.copyFile, resolve(__dirname, '..', 'templates', 'index.txt'),
-      `${pathToCreatedDirectory}/index.js`
     );
   });
 });
