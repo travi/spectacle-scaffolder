@@ -90,6 +90,7 @@ suite('scaffolder', () => {
         scripts: {
           build: 'webpack --env production',
           'build:dev': 'webpack --env development',
+          prestart: 'run-s build',
           start: 'serve lib/',
           dev: 'webpack-dev-server',
           'test:smoke': `start-server-and-test 'npm start' ${smokeTestBaseUrl} cypress:run`,
