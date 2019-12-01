@@ -50,5 +50,9 @@ suite('presentation scaffolder', () => {
       promises.copyFile, resolve(__dirname, '..', 'templates', 'index.txt'),
       `${pathToCreatedDirectory}/index.js`
     );
+    assert.calledWith(
+      promises.copyFile, resolve(__dirname, '..', 'templates', 'presentation.txt'),
+      `${pathToCreatedDirectory}/presentation.js`
+    );
   });
 });
