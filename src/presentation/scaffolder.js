@@ -12,7 +12,7 @@ export default async function ({projectRoot}) {
 
   return {
     dependencies: [
-      'spectacle',
+      'spectacle@5',
       'react',
       'react-dom',
       'prop-types',
