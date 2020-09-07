@@ -46,7 +46,7 @@
     "@travi/babel-preset": "3.0.30",
     "@travi/eslint-config": "1.0.46",
     "@travi/eslint-config-mocha": "1.0.8",
-    "@travi/javascript-scaffolder": "11.4.0",
+    "@travi/javascript-scaffolder": "11.5.0",
     "ban-sensitive-files": "1.9.9",
     "chai": "4.2.0",
     "codecov": "3.7.2",
