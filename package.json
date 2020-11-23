@@ -13,7 +13,6 @@
     "clean": "rimraf lib/",
     "lint:md": "remark . --frail",
     "lint:js": "eslint . --cache",
-    "lint:travis": "travis-lint .travis.yml",
     "lint:sensitive": "ban",
     "lint:peer": "npm ls >/dev/null",
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
@@ -62,8 +61,7 @@
     "rollup": "2.33.3",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-node-resolve": "5.2.0",
-    "sinon": "9.2.0",
-    "travis-lint": "1.0.0"
+    "sinon": "9.2.0"
   },
   "dependencies": {
     "@form8ion/cypress-scaffolder": "2.2.0",
