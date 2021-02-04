@@ -48,7 +48,7 @@
     "@travi/javascript-scaffolder": "12.2.1",
     "@travi/project-scaffolder": "9.0.4",
     "ban-sensitive-files": "1.9.15",
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "codecov": "3.8.1",
     "commitlint-config-travi": "1.3.11",
     "cz-conventional-changelog": "3.3.0",
