@@ -33,7 +33,7 @@
     "templates/"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12.17"
   },
   "config": {
     "commitizen": {
