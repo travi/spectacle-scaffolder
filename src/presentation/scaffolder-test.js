@@ -29,7 +29,7 @@ suite('presentation scaffolder', () => {
       await scaffoldPresentation({projectRoot}),
       {
         dependencies: [
-          'spectacle@5',
+          'spectacle',
           'react',
           'react-dom',
           'prop-types',
