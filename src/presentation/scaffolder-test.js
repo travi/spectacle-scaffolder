@@ -47,11 +47,13 @@ suite('presentation scaffolder', () => {
       }
     );
     assert.calledWith(
-      promises.copyFile, resolve(__dirname, '..', 'templates', 'index.txt'),
+      promises.copyFile,
+      resolve(__dirname, '..', 'templates', 'index.txt'),
       `${pathToCreatedDirectory}/index.js`
     );
     assert.calledWith(
-      promises.copyFile, resolve(__dirname, '..', 'templates', 'presentation.txt'),
+      promises.copyFile,
+      resolve(__dirname, '..', 'templates', 'presentation.txt'),
       `${pathToCreatedDirectory}/presentation.js`
     );
   });
