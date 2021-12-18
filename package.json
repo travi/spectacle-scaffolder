@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/register": "7.16.5",
+    "@rollup/plugin-node-resolve": "13.1.1",
     "@travi/any": "2.0.19",
     "@travi/babel-preset": "3.0.70",
     "@travi/eslint-config": "1.0.92",
@@ -61,7 +62,6 @@
     "rimraf": "3.0.2",
     "rollup": "2.61.1",
     "rollup-plugin-auto-external": "2.0.0",
-    "@rollup/plugin-node-resolve": "6.0.0",
     "sinon": "12.0.1"
   },
   "dependencies": {
