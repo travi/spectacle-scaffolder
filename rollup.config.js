@@ -1,6 +1,6 @@
 /* eslint import/no-extraneous-dependencies: ['error', {'devDependencies': true}] */
 import autoExternal from 'rollup-plugin-auto-external';
-import nodeResolve from 'rollup-plugin-node-resolve';
+import nodeResolve from '@rollup/plugin-node-resolve';
 
 export default {
   input: 'src/index.js',
