@@ -62,7 +62,7 @@
     "rimraf": "4.4.0",
     "rollup": "3.19.1",
     "rollup-plugin-auto-external": "2.0.0",
-    "sinon": "15.0.1"
+    "sinon": "15.0.2"
   },
   "dependencies": {
     "@form8ion/cypress-scaffolder": "3.0.0",
