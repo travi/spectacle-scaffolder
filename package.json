@@ -49,8 +49,7 @@
   },
   "dependencies": {
     "@form8ion/cypress-scaffolder": "3.0.2",
-    "make-dir": "^4.0.0",
-    "mz": "^2.7.0"
+    "make-dir": "^4.0.0"
   },
   "devDependencies": {
     "@babel/register": "7.22.5",
