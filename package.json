@@ -34,13 +34,14 @@
     "lint:engines": "ls-engines",
     "lint:publish": "publint --strict"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "lib/",
     "templates/"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
