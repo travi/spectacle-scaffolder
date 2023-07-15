@@ -1,4 +1,4 @@
-import * as cypressScaffolder from '@form8ion/cypress-scaffolder';
+import cypressScaffolder from '@form8ion/cypress-scaffolder';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
