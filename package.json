@@ -1,20 +1,28 @@
 {
   "name": "@travi/spectacle-scaffolder",
   "description": "scaffolder for presentations using Spectacle",
-  "version": "0.0.0-semantically-released",
-  "main": "lib/index.cjs.js",
-  "module": "lib/index.es.js",
   "license": "MIT",
+  "version": "0.0.0-semantically-released",
+  "engines": {
+    "node": "^16.14 || >=18"
+  },
+  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "repository": "travi/spectacle-scaffolder",
   "bugs": "https://github.com/travi/spectacle-scaffolder/issues",
   "homepage": "https://npm.im/@travi/spectacle-scaffolder",
-  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
+  "exports": {
+    "import": "./lib/index.mjs",
+    "require": "./lib/index.js"
+  },
   "scripts": {
     "clean": "rimraf lib/",
     "lint:md": "remark . --frail",
     "lint:js": "eslint . --cache",
     "lint:sensitive": "ban",
     "lint:peer": "npm ls >/dev/null",
+    "pretest": "run-s build",
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
     "test:unit:base": "mocha 'src/**/*-test.js'",
     "test:unit": "nyc run-s test:unit:base",
@@ -23,7 +31,9 @@
     "build:js": "rollup -c",
     "watch": "run-s 'build:js -- --watch'",
     "prepack": "run-s build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:engines": "ls-engines",
+    "lint:publish": "publint --strict"
   },
   "publishConfig": {
     "access": "public"
@@ -32,9 +42,6 @@
     "lib/",
     "templates/"
   ],
-  "engines": {
-    "node": "^16.14 || >=18"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -54,9 +61,11 @@
     "commitlint-config-travi": "1.4.32",
     "cz-conventional-changelog": "3.3.0",
     "husky": "8.0.3",
+    "ls-engines": "0.9.0",
     "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
     "nyc": "15.1.0",
+    "publint": "0.1.16",
     "remark-cli": "11.0.0",
     "remark-preset-lint-travi": "5.0.2",
     "rimraf": "5.0.1",
