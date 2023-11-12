@@ -1,5 +1,6 @@
 import {scaffold as scaffoldCypress} from '@form8ion/cypress-scaffolder';
-import scaffoldPresentation from './presentation';
+
+import scaffoldPresentation from './presentation/index.js';
 
 export async function scaffold({projectRoot}) {
   const smokeTestBaseUrl = 'http://localhost:5000';

@@ -1,10 +1,12 @@
 import {promises} from 'fs';
 import {resolve} from 'path';
+
 import {assert} from 'chai';
 import any from '@travi/any';
 import sinon from 'sinon';
-import * as mkdir from '../../third-party-wrappers/make-dir';
-import scaffoldPresentation from './scaffolder';
+
+import * as mkdir from '../../third-party-wrappers/make-dir.js';
+import scaffoldPresentation from './scaffolder.js';
 
 suite('presentation scaffolder', () => {
   let sandbox;

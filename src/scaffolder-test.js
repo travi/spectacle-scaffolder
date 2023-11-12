@@ -1,9 +1,11 @@
 import cypressScaffolder from '@form8ion/cypress-scaffolder';
+
 import {assert} from 'chai';
 import sinon from 'sinon';
 import any from '@travi/any';
-import * as presentationScaffolder from './presentation/scaffolder';
-import {scaffold} from './scaffolder';
+
+import * as presentationScaffolder from './presentation/scaffolder.js';
+import {scaffold} from './scaffolder.js';
 
 suite('scaffolder', () => {
   let sandbox;
