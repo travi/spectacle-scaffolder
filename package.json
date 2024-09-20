@@ -59,7 +59,7 @@
     "@travi/babel-preset": "3.0.131",
     "@travi/eslint-config": "4.0.5",
     "@travi/eslint-config-mocha": "1.0.25",
-    "@form8ion/javascript": "12.6.2",
+    "@form8ion/javascript": "12.6.3",
     "ban-sensitive-files": "1.10.6",
     "c8": "10.1.2",
     "chai": "4.5.0",
