@@ -54,7 +54,7 @@
   "devDependencies": {
     "@babel/register": "7.24.6",
     "@form8ion/javascript": "12.6.3",
-    "@rollup/plugin-node-resolve": "15.2.4",
+    "@rollup/plugin-node-resolve": "15.3.0",
     "@travi/any": "3.1.2",
     "@travi/babel-preset": "3.0.131",
     "@travi/eslint-config": "5.0.10",
