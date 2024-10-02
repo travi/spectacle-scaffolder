@@ -52,7 +52,7 @@
     "make-dir": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/register": "7.24.6",
+    "@babel/register": "7.25.7",
     "@form8ion/javascript": "13.0.1",
     "@rollup/plugin-node-resolve": "15.3.0",
     "@travi/any": "3.1.2",
