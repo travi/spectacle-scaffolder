@@ -62,7 +62,7 @@
     "@form8ion/javascript": "13.0.1",
     "ban-sensitive-files": "1.10.6",
     "c8": "10.1.2",
-    "chai": "4.5.0",
+    "chai": "5.1.1",
     "commitlint-config-travi": "1.4.51",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
