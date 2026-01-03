@@ -3,6 +3,7 @@
   "description": "scaffolder for presentations using Spectacle",
   "license": "MIT",
   "version": "0.0.0-semantically-released",
+  "type": "commonjs",
   "engines": {
     "node": "^16.14 || >=18"
   },
