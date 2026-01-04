@@ -5,7 +5,7 @@
   "version": "0.0.0-semantically-released",
   "type": "commonjs",
   "engines": {
-    "node": "^16.14 || >=18"
+    "node": "^20.19.0 || >=22.14.0"
   },
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "repository": "travi/spectacle-scaffolder",
@@ -78,7 +78,7 @@
     "rimraf": "6.1.2",
     "rollup": "4.54.0",
     "rollup-plugin-auto-external": "2.0.0",
-    "vitest": "0.34.6",
+    "vitest": "2.1.9",
     "vitest-when": "0.10.0"
   },
   "peerDependencies": {
