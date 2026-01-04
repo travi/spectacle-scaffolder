@@ -11,12 +11,12 @@
   "repository": "travi/spectacle-scaffolder",
   "bugs": "https://github.com/travi/spectacle-scaffolder/issues",
   "homepage": "https://npm.im/@travi/spectacle-scaffolder",
-  "main": "./lib/index.js",
-  "module": "./lib/index.mjs",
   "exports": {
     "import": "./lib/index.mjs",
     "require": "./lib/index.js"
   },
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
   "scripts": {
     "clean": "rimraf lib/",
     "lint:md": "remark . --frail",
