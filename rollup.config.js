@@ -6,7 +6,6 @@ export default {
   input: 'src/index.js',
   plugins: [autoExternal(), nodeResolve({mainFields: ['module']})],
   output: [
-    {file: 'lib/index.js', format: 'cjs', sourcemap: true},
-    {file: 'lib/index.mjs', format: 'esm', sourcemap: true}
+    {file: 'lib/index.js', format: 'esm', sourcemap: true}
   ]
 };
