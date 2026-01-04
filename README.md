@@ -6,6 +6,7 @@ scaffolder for presentations using [Spectacle](https://github.com/FormidableLabs
 
 [![Codecov][coverage-badge]][coverage-link]
 [![Node CI Workflow Status][github-actions-ci-badge]][github-actions-ci-link]
+![SLSA Level 2][slsa-badge]
 
 <!--status-badges end -->
 
@@ -89,3 +90,7 @@ $ npm test
 [github-actions-ci-link]: https://github.com/travi/spectacle-scaffolder/actions?query=workflow%3A%22Node.js+CI%22+branch%3Amaster
 
 [github-actions-ci-badge]: https://github.com/travi/spectacle-scaffolder/workflows/Node.js%20CI/badge.svg
+
+[slsa-badge]: https://slsa.dev/images/gh-badge-level2.svg
+
+[node-badge]: https://img.shields.io/node/v/@travi/spectacle-scaffolder?logo=node.js
