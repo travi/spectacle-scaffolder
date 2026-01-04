@@ -16,6 +16,7 @@ scaffolder for presentations using [Spectacle](https://github.com/FormidableLabs
 
 [![npm][npm-badge]][npm-link]
 [![MIT license][license-badge]][license-link]
+![node][node-badge]
 
 <!--consumer-badges end -->
 
