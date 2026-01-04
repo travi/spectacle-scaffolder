@@ -71,7 +71,7 @@
     "rimraf": "6.1.2",
     "rollup": "4.54.0",
     "rollup-plugin-auto-external": "2.0.0",
-    "vitest": "2.1.9",
+    "vitest": "4.0.16",
     "vitest-when": "0.10.0"
   }
 }
