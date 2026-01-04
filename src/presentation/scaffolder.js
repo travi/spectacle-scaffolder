@@ -1,14 +1,13 @@
-import {promises} from 'fs';
+import {promises as fs} from 'fs';
 import {resolve} from 'path';
+import makeDir from 'make-dir';
 
-import mkdir from '../../third-party-wrappers/make-dir.js';
-
-export default async function ({projectRoot}) {
-  const srcDirectory = await mkdir(`${projectRoot}/src`);
+export default async function scaffold({projectRoot}) {
+  const srcDirectory = await makeDir(`${projectRoot}/src`);
 
   await Promise.all([
-    promises.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`),
-    promises.copyFile(resolve(__dirname, '..', 'templates', 'presentation.txt'), `${srcDirectory}/presentation.js`)
+    fs.copyFile(resolve(__dirname, '..', 'templates', 'index.txt'), `${srcDirectory}/index.js`),
+    fs.copyFile(resolve(__dirname, '..', 'templates', 'presentation.txt'), `${srcDirectory}/presentation.js`)
   ]);
 
   return {
