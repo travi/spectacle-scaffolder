@@ -58,15 +58,15 @@ $ npm test
 
 [npm-link]: https://www.npmjs.com/package/@travi/spectacle-scaffolder
 
-[npm-badge]: https://img.shields.io/npm/v/@travi/spectacle-scaffolder.svg
+[npm-badge]: https://img.shields.io/npm/v/@travi/spectacle-scaffolder?logo=npm
 
 [license-link]: LICENSE
 
-[license-badge]: https://img.shields.io/github/license/travi/spectacle-scaffolder.svg
+[license-badge]: https://img.shields.io/github/license/travi/spectacle-scaffolder.svg?logo=opensourceinitiative
 
 [coverage-link]: https://codecov.io/github/travi/spectacle-scaffolder
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/travi/spectacle-scaffolder.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/travi/spectacle-scaffolder?logo=codecov
 
 [commit-convention-link]: https://conventionalcommits.org
 
