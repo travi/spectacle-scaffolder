@@ -33,7 +33,8 @@
     "prepack": "run-s build",
     "prepare": "husky install",
     "lint:engines": "ls-engines",
-    "lint:publish": "publint --strict"
+    "lint:publish": "publint --strict",
+    "lint:lockfile": "lockfile-lint"
   },
   "files": [
     "lib/",
@@ -67,6 +68,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "husky": "9.1.7",
+    "lockfile-lint": "4.14.1",
     "ls-engines": "0.9.3",
     "mocha": "11.7.5",
     "npm-run-all2": "7.0.2",
