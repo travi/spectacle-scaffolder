@@ -48,7 +48,7 @@
     }
   },
   "dependencies": {
-    "@form8ion/cypress-scaffolder": "3.0.3",
+    "@form8ion/cypress-scaffolder": "4.0.0",
     "make-dir": "^4.0.0"
   },
   "devDependencies": {
