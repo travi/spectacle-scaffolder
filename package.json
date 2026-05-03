@@ -55,7 +55,7 @@
     "@form8ion/eslint-config-vitest": "1.1.0",
     "@rollup/plugin-node-resolve": "16.0.3",
     "@travi/any": "3.3.0",
-    "@travi/eslint-config": "5.0.13",
+    "@travi/eslint-config": "5.0.14",
     "ban-sensitive-files": "1.10.11",
     "c8": "11.0.0",
     "commitlint-config-travi": "1.4.63",
