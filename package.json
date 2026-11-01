@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@form8ion/cypress-scaffolder": "4.0.0",
-    "make-dir": "^4.0.0"
+    "make-dir": "^5.0.0"
   },
   "devDependencies": {
     "@form8ion/eslint-config-vitest": "1.1.0",
